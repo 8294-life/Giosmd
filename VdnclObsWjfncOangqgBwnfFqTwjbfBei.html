@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transmisión en vivo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #video-container {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    #modal {
+      background-color: #fff;
+      max-width: 80%; /* Ajusta el ancho máximo según sea necesario */
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #overlay-text {
+      color: black;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #accept-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <video controls autoplay muted>
+      <source src="video.mp4" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
+    </video>
+  </div>
+
+  <!-- Ventana emergente -->
+  <div id="overlay">
+    <div id="modal">
+      <div id="overlay-text">
+        <p id="live-text">Loading...</p>
+      </div>
+      <button id="accept-button" onclick="redireccionar()">Join Now</button>
+    </div>
+  </div>
+
+  <script>
+    // Script para mostrar la ventana emergente al cargar la página
+    window.onload = function() {
+      document.getElementById("overlay").style.display = "flex";
+    };
+
+    // Script para cambiar el texto dependiendo del idioma del navegador y del país
+    var language = navigator.language || navigator.userLanguage;
+    var country = (navigator.language || navigator.userLanguage).split('-')[1];
+    var liveText = document.getElementById("live-text");
+
+    if (language.startsWith("es") || country === "ES") {
+      liveText.innerText = "¡Estoy en vivo ahora! Si quieres unirte, sigue los pasos:";
+    } else {
+      liveText.innerText = "I'm live now! If you want to join, follow the steps:";
+    }
+
+    function redireccionar() {
+      // Oculta la ventana emergente y redirige al usuario
+      document.getElementById("overlay").style.display = "none";
+      // Coloca la URL a la que deseas redirigir al usuario
+      window.location.href = "https://higggj.meetdats.com/s/509b80c7b4a7f";
+    }
+  </script>
+</body>
+</html>
